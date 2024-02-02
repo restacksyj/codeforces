@@ -100,54 +100,25 @@ void solve() {
   string s;
   cin >> s;
 
-  string out;
+  string out = "";
 
-  unordered_map<char, int> vow = {
-      {'a', 1},
-      {'e', 1},
-  };
-
-  unordered_map<char, int> cons = {
-      {'b', 1},
-      {'c', 1},
-      {'d', 1},
-  };
-
-  int i = 0;
-  while (i < s.size()) {
-    if (i == n - 2) {
-      char cvc[3] = {s[i], s[i + 1], '\0'};
-      out += cvc;
-      out += '.';
-      i += 2;
-      continue;
-    }
-
-    if (i == n - 3) {
-      char cvc[4] = {s[i], s[i + 1], s[i + 2], '\0'};
-      out += cvc;
-      out += '.';
-      i += 3;
-      continue;
-    }
-
-    if (cons[s[i]] && vow[s[i + 1]] && cons[s[i + 2]] && i != n - 1 &&
-        cons[s[i + 3]]) {
-      char cvc[4] = {s[i], s[i + 1], s[i + 2], '\0'};
-      out += cvc;
-      out += '.';
-      i += 3;
-      continue;
+  while (!s.empty()) {
+    int x = 0;
+    if (s.back() == 'a' || s.back() == 'e') {
+      x = 2;
     } else {
-      char cvc[3] = {s[i], s[i + 1], '\0'};
-      out += cvc;
-      out += '.';
-      i += 2;
-      continue;
+      x = 3;
     }
+
+    while (x--) {
+      out += s.back();
+      s.pop_back();
+    }
+    out += '.';
   }
 
-  out.resize(out.size() - 1);
+  out.pop_back();
+  reverse(out.begin(), out.end());
 
   cout << out << endl;
 }
