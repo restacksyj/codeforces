@@ -94,12 +94,59 @@ template <class T, class V> void _print(unordered_map<T, V> v) {
 }
 
 void solve() {
+  int f, n, a, b;
+  cin >> n >> f >> a >> b;
+  int last = 0;
+  vector<int> v(n);
+  for (int i = 0; i < n; i++)
+    cin >> v[i];
+
+  for (int i = 0; i < n; i++) {
+    long long keepOn = 1LL * a * (v[i] - last);
+    long long turnOffAndOn = b;
+    long long required = min(keepOn, turnOffAndOn);
+
+    f -= required;
+    last = v[i];
+
+    if (f <= 0) {
+      cout << "NO" << endl;
+      return;
+    }
+  }
+
+  yes;
+
+  // int n, f, a, b;
+  // cin >> n >> f >> a >> b;
+  //
+  // vector<int> v(n);
+  // for (int i = 0; i < n; i++)
+  //   cin >> v[i];
+  //
+  // int last = 0;
+  //
+  // for (int i = 0; i < n; i++) {
+  //   long long keepOn = 1LL * a * (v[i] - last);
+  //   long long turnOffAndOn = b;
+  //   long long required = min(keepOn, turnOffAndOn);
+  //
+  //   f -= required;
+  //   last = v[i];
+  //
+  //   if (f <= 0) {
+  //     cout << "NO" << endl;
+  //     return;
+  //   }
+  // }
+  //
+  // cout << "YES" << endl;
 }
 
 int main() {
   FAST_IO;
   int TC = 1;
-  // cin >> TC;
+  cin >> TC;
   while (TC--)
     solve();
 }

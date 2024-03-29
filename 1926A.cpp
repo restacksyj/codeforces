@@ -94,12 +94,30 @@ template <class T, class V> void _print(unordered_map<T, V> v) {
 }
 
 void solve() {
+  string s;
+  cin >> s;
+
+  int acount = 0;
+  int bcount = 0;
+
+  for (char c : s) {
+    if (c == 'A')
+      acount++;
+    if (c == 'B')
+      bcount++;
+  }
+
+  if (acount > bcount) {
+    cout << 'A' << endl;
+  } else {
+    cout << 'B' << endl;
+  }
 }
 
 int main() {
   FAST_IO;
   int TC = 1;
-  // cin >> TC;
+  cin >> TC;
   while (TC--)
     solve();
 }

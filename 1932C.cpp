@@ -17,6 +17,7 @@ using namespace std;
 #define ll long long
 
 void _print(int t) { cerr << t; }
+void _print(ll t) { cerr << t; }
 void _print(string t) { cerr << t; }
 void _print(char t) { cerr << t; }
 void _print(long double t) { cerr << t; }
@@ -94,12 +95,51 @@ template <class T, class V> void _print(unordered_map<T, V> v) {
 }
 
 void solve() {
+  int n, m;
+  cin >> n >> m;
+
+  vector<int> s;
+  vector<ll> ans;
+  ll sum = 1;
+  for (int i = 0; i < n; i++) {
+    int y;
+    cin >> y;
+    s.push_back(y);
+    sum *= y%m;
+  }
+
+  string str;
+  cin >> str;
+
+  _print(sum);
+
+
+  ans.push_back(sum % m);
+
+  for (char c : str) {
+    if (c == 'L') {
+      sum = sum / s.front();
+      ans.push_back(sum % m);
+      s.erase(s.begin());
+    } else {
+      sum /= s.back();
+      ans.push_back(sum % m);
+      s.pop_back();
+    }
+  }
+
+  ans.pop_back();
+
+  for (auto it : ans) {
+    cout << it << " ";
+  }
+  cout << "\n";
 }
 
 int main() {
   FAST_IO;
   int TC = 1;
-  // cin >> TC;
+  cin >> TC;
   while (TC--)
     solve();
 }

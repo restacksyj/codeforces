@@ -94,12 +94,37 @@ template <class T, class V> void _print(unordered_map<T, V> v) {
 }
 
 void solve() {
+  int x;
+  cin >> x;
+
+  string s;
+  cin >> s;
+
+  int ct = 0;
+  int i = 0;
+
+  while (i < x) {
+    if (s[i] == '@') {
+      i++;
+      ct++;
+    } else if (s[i] == '.') {
+      i++;
+    } else if (s[i] == '*') {
+      if (i < x - 1 && s[i + 1] != '*') {
+        i++;
+      } else {
+        break;
+      }
+    }
+  }
+
+  cout << ct << endl;
 }
 
 int main() {
   FAST_IO;
   int TC = 1;
-  // cin >> TC;
+  cin >> TC;
   while (TC--)
     solve();
 }

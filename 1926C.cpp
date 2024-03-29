@@ -93,13 +93,33 @@ template <class T, class V> void _print(unordered_map<T, V> v) {
   cerr << "]";
 }
 
+const int MAX = 200'007;
+
+int res[MAX];
+
+int S(int x) {
+  int res = 0;
+  while (x) {
+    res += (x % 10);
+    x /= 10;
+  }
+  return res;
+}
+
 void solve() {
+  int n;
+  cin >> n;
+  cout << res[n] << endl;
 }
 
 int main() {
   FAST_IO;
-  int TC = 1;
-  // cin >> TC;
+  res[0] = 0;
+  for (int i = 1; i < MAX; i++) {
+    res[i] = res[i - 1] + S(i);
+  }
+  int TC;
+  cin >> TC;
   while (TC--)
     solve();
 }

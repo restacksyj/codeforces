@@ -93,13 +93,51 @@ template <class T, class V> void _print(unordered_map<T, V> v) {
   cerr << "]";
 }
 
+const string square = "SQUARE";
+const string triangle = "TRIANGLE";
+
 void solve() {
+  int gridS;
+  cin >> gridS;
+
+  vector<vector<int>> v(gridS, vector<int>(gridS));
+
+  int i = 0;
+  while (i < gridS) {
+    string s;
+    cin >> s;
+    for (int j = 0; j < gridS; j++) {
+      v[i][j] = (s[j] == '0' ? 0 : 1);
+    }
+    i++;
+  }
+
+  unordered_map<int, int> u;
+
+  for (int x = 0; x < v.size(); x++) {
+    for (int y = 0; y < v[x].size(); y++) {
+      if (v[x][y] == 1) {
+        u[x]++;
+      }
+    }
+  }
+
+  int val = 0;
+
+  for (auto it : u) {
+    if(!val) val = it.second;
+    if (it.second != val) {
+      cout << triangle << endl;
+      return;
+    }
+  }
+  cout << square << endl;
 }
 
 int main() {
   FAST_IO;
   int TC = 1;
-  // cin >> TC;
+  cin >> TC;
   while (TC--)
     solve();
 }
